@@ -5,17 +5,14 @@ require_relative 'html_file'
 
 class Main
 
-  attr_reader :input, :output
-
   def initialize(args)
-    @input = args[:input]
-    @output = args[:output]
+    @input = args[0]
+    @output = args[1]
   end
 
   def generate_report
     statistics = get_statistics(get_data)
-    metrics = Hash.new
-    # Report 1
+    # 1) Build Data Report 
     metrics = { "Highest Impressions" => statistics.highest_impressions,
                 "Highest Clicks" => statistics.highest_clicks,
                 "Highest Converted Clicks" => statistics.highest_converted_clicks, 
@@ -23,11 +20,11 @@ class Main
                 "Highest Conv. Clicks/Clicks" => statistics.highest_converted_clicks_div_clicks, 
                 "Lowest Cost / Converted Click" => statistics.lowest_cost_div_converted_click }
     columns = { "Campaign ID" => "id_campaing", "Final URL" => "final_url", "Day" => "day" }
+    # 2) Tabular report
     report = get_report(metrics, columns)
-    # Hash of reports
-    reports = Hash.new
+    # 3) Include report in a list of reports
     reports = {"Google Ad Performance Report" => report}
-    # Generate HTML file
+    # 4) Convert reports to HTML format and generate output file
     get_output(reports)
   end
 
@@ -53,6 +50,3 @@ class Main
   end
 
 end
-
-main = Main.new(:input => "ad_performance_aug.csv", :output => "report.html")
-main.generate_report
