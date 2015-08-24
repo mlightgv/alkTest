@@ -1,0 +1,4 @@
+#! /usr/bin/ruby
+require 'runner_alkhemy'
+
+build = RunnerAlkhemy.new(ARGV)
