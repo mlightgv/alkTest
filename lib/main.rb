@@ -15,6 +15,7 @@ class Main
   def generate_report
     statistics = get_statistics(get_data)
     metrics = Hash.new
+    # Report 1
     metrics = { "Highest Impressions" => statistics.highest_impressions,
                 "Highest Clicks" => statistics.highest_clicks,
                 "Highest Converted Clicks" => statistics.highest_converted_clicks, 
@@ -23,7 +24,11 @@ class Main
                 "Lowest Cost / Converted Click" => statistics.lowest_cost_div_converted_click }
     columns = { "Campaign ID" => "id_campaing", "Final URL" => "final_url", "Day" => "day" }
     report = get_report(metrics, columns)
-    get_output("Google Ad Performance Report", report)
+    # Hash of reports
+    reports = Hash.new
+    reports = {"Google Ad Performance Report" => report}
+    # Generate HTML file
+    get_output(reports)
   end
 
   private
@@ -42,9 +47,9 @@ class Main
     data_report = report.generate_report
   end
 
-  def get_output(title, data_report)
-    html = Html.new(:title => title, :info => data_report, :output => @output)
-    output = html.build_html
+  def get_output(reports)
+    html = Html.new(:reports => reports, :output => @output)
+    output = html.build_html_report
   end
 
 end
