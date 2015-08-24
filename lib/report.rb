@@ -26,10 +26,9 @@ class Report
   def build_table(titles, fields)
     table = Hash.new
     table = table.merge(titles)
-    @metrics.map do |key, value|
+    @metrics.map do |name, value|
       row = filter_fields(fields, value)
-      new_row = add_row(key, row)
-      table = table.merge(new_row)
+      table = table.merge(add_row(name, row))
     end
     table
   end
@@ -40,8 +39,8 @@ class Report
     row
   end
 
-  def add_row(key, rows)
-    new_row = { key => rows }
+  def add_row(name, row_values)
+    new_row = { name => row_values }
   end
   
 end
