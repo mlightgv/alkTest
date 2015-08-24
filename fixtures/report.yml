@@ -1,0 +1,17 @@
+column_name1: "Metrics"
+column_name2: "Campaign ID"
+column_name3: "Final URL"
+column_name4: "Day"
+row_metric_name1: "Highest Impressions"
+row_metric_name2: "Highest Clicks"
+row_metric_name3: "Highest Converted Clicks"
+row_metric_name4: "Lowest Cost"
+row_metric_name5: "Highest Conv. Clicks/Clicks"
+row_metric_name6: "Lowest Cost / Converted Click"
+headers: ["Campaign ID", "Final URL", "Day"]
+row_value1: ["243061000", "http://courses.alkhemyinstitute.edu.au/advanced-diploma-of-transpersonal-art-therapy/", "9/08/2015"]
+row_value2: ["243061000", "http://courses.alkhemyinstitute.edu.au/advanced-diploma-of-transpersonal-art-therapy/", "6/08/2015"]
+row_value3: ["243061000", "http://courses.alkhemyinstitute.edu.au/advanced-diploma-of-transpersonal-art-therapy/", "6/08/2015"]
+row_value4: ["243061000", "http://courses.alkhemyinstitute.edu.au/bachelor-of-holistic-counselling/", "12/08/2015"]
+row_value5: ["243061000", "http://courses.alkhemyinstitute.edu.au/advanced-diploma-of-transpersonal-art-therapy/", "3/08/2015"]
+row_value6: ["243061000", "http://courses.alkhemyinstitute.edu.au/advanced-diploma-of-transpersonal-art-therapy/", "2/08/2015"]
