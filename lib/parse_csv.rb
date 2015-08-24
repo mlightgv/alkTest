@@ -13,12 +13,12 @@ class ParseCSV
     CSV.foreach(@file, headers: true, skip_blanks: true) do |row|
         stats = Stats.new(  row['Campaign ID'],
                             row['Day'],
-                            row["Impressions"],
-                            row["Clicks"], 
-                            row["Cost"], 
-                            row["Converted clicks"], 
-                            row["Cost / converted click"], 
-                            row["Click conversion rate"], 
+                            row["Impressions"].to_i,
+                            row["Clicks"].to_i, 
+                            row["Cost"].to_i, 
+                            row["Converted clicks"].to_i, 
+                            row["Cost / converted click"].to_i, 
+                            row["Click conversion rate"].to_i, 
                             row["Final URL"] )
         results << stats
     end
