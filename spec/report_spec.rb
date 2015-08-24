@@ -7,7 +7,7 @@ describe Report do
   before do
     parse = ParseCSV.new(:file_in => "spec/ad_performance_aug.csv")
     data = parse.parse_data
-    statistics = Statistic.new(:campaings => data)
+    statistics = Statistic.new(:results => data)
     columns = { "Campaign ID" => "id_campaing", "Final URL" => "final_url", "Day" => "day" }
     @metric = { :row1 => "Highest Impressions", :row2 => "Highest Clicks", :row3 => "Highest Converted Clicks", :row4 => "Lowest Cost", :row5 => "Highest Conv. Clicks/Clicks", :row6 => "Lowest Cost / Converted Click"}
     metrics = Hash.new
