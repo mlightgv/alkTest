@@ -1,4 +1,4 @@
-class TransformData
+class Summary
 
 attr_reader :data
 
@@ -28,18 +28,18 @@ attr_reader :data
   private
 
   def find_by
-    @data.map{ |a| [a[:id_campaing], a[:day], a[:final_url]] }.uniq
+    @data.map{ |a| [a[:id_campaign], a[:day], a[:final_url]] }.uniq
   end
 
   def filter_data(id_campaing, day, final_url)
-    rows = @data.find_all{ |a| a[:id_campaing] == id_campaing && a[:day] == day && a[:final_url] == final_url }
+    rows = @data.find_all{ |a| a[:id_campaign] == id_campaing && a[:day] == day && a[:final_url] == final_url }
   end
 
   def sum_values(rows, column_name)
     rows.inject(0){ |sum,t| sum + t[column_name.to_sym].to_i }
   end
 
-  Stats = Struct.new( :id_campaing,
+  Stats = Struct.new( :id_campaign,
                       :day, 
                       :final_url,
                       :impressions,

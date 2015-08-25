@@ -1,6 +1,3 @@
-require 'statistic'
-require 'parse_csv'
-require 'report'
 require 'html_file'
 require 'yaml'
 

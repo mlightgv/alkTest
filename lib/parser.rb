@@ -1,6 +1,6 @@
 require 'csv'
 
-class ParseCSV
+class Parser
 
   attr_reader :file_in
 
@@ -8,7 +8,7 @@ class ParseCSV
     @file = args[:file_in]
   end
 
-  def parse_data
+  def parser_data
     results = Array.new
     CSV.foreach(@file, headers: true, skip_blanks: true) do |row|
         stats = Stats.new(  row['Campaign ID'],
@@ -25,7 +25,7 @@ class ParseCSV
     results
   end
 
-  Stats = Struct.new( :id_campaing, 
+  Stats = Struct.new( :id_campaign, 
                       :day, 
                       :impressions, 
                       :clicks, 

@@ -1,15 +1,15 @@
+require 'parser'
+require 'summary'
 require 'statistic'
-require 'parse_csv'
-require 'transform_data'
 require 'yaml'
 
 describe Statistic do
 
   before do
     @yaml = YAML.load_file("./fixtures/statistic.yml")
-    parse = ParseCSV.new(:file_in => "./fixtures/test_data.csv")
-    data = parse.parse_data
-    transform_data = TransformData.new(:data => data)
+    parser = Parser.new(:file_in => "./fixtures/test_data.csv")
+    data = parser.parser_data
+    transform_data = Summary.new(:data => data)
     results = transform_data.group_data
     @statistics = Statistic.new(:results => results)
   end

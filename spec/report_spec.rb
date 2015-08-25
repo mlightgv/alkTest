@@ -1,18 +1,18 @@
+require 'parser'
+require 'summary'
 require 'statistic'
-require 'parse_csv'
 require 'report'
-require 'transform_data'
 require 'yaml'
 
 describe Report do
 
   before do
     @yaml = YAML.load_file("./fixtures/report.yml")
-    parse = ParseCSV.new(:file_in => "./fixtures/test_data.csv")
-    transform_data = TransformData.new(:data => parse.parse_data)
+    parser = Parser.new(:file_in => "./fixtures/test_data.csv")
+    transform_data = Summary.new(:data => parser.parser_data)
     statistics = Statistic.new(:results => transform_data.group_data)
     # 1) Build Data Report 
-    columns = { @yaml["column_name2"] => "id_campaing", @yaml["column_name3"] => "final_url", @yaml["column_name4"] => "day" }
+    columns = { @yaml["column_name2"] => "id_campaign", @yaml["column_name3"] => "final_url", @yaml["column_name4"] => "day" }
     metrics = { @yaml["row_metric_name1"] => statistics.highest_impressions,
                 @yaml["row_metric_name2"] => statistics.highest_clicks,
                 @yaml["row_metric_name3"] => statistics.highest_converted_clicks, 

@@ -15,6 +15,8 @@ class Html
     html_format.to_s
   end
 
+  private
+
   def build_html(reports)
     html_format = Markaby::Builder.new
     html_format.html5 do

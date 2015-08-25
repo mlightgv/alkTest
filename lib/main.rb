@@ -1,8 +1,9 @@
-require_relative 'parse_csv'
-require_relative 'report'
+require_relative 'parser'
+require_relative 'summary'
 require_relative 'statistic'
+require_relative 'report'
 require_relative 'html_file'
-require_relative 'transform_data'
+
 
 class Main
 
@@ -20,7 +21,7 @@ class Main
                 "Lowest Cost" => statistics.lowest_cost,
                 "Highest Conv. Clicks/Clicks" => statistics.highest_converted_clicks_div_clicks, 
                 "Lowest Cost / Converted Click" => statistics.lowest_cost_div_converted_click }
-    columns = { "Campaign ID" => "id_campaing", "Final URL" => "final_url", "Day" => "day" }
+    columns = { "Campaign ID" => "id_campaign", "Final URL" => "final_url", "Day" => "day" }
     # 2) Tabular report
     report = get_report(metrics, columns)
     # 3) Include report in a list of reports
@@ -32,13 +33,13 @@ class Main
   private
 
   def get_data
-    parse = ParseCSV.new(:file_in => @input)
-    data = parse.parse_data
+    parser = Parser.new(:file_in => @input)
+    data = parser.parser_data
     data = transform_data(data)
   end
 
   def transform_data(data)
-    transform_data = TransformData.new(:data => data)
+    transform_data = Summary.new(:data => data)
     data = transform_data.group_data
   end
 

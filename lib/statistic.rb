@@ -33,7 +33,7 @@ attr_reader :results
   private
 
   def filter_data
-    @results.select { |a| a[:id_campaing].strip != "--" }
+    @results.select { |a| a[:id_campaign].strip != "--" }
   end
 
 end
