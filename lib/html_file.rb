@@ -31,7 +31,7 @@ class Html
                 value.each{ |v| td v }
               end
             end
-           end
+          end
         end
       end
     end
@@ -39,9 +39,13 @@ class Html
   end
 
   def output_html_report(content)
-    @out_file = File.new(output, "w+")
-    @out_file.puts(content)
-    @out_file.close
+    begin
+      @out_file = File.new(output, "w+")
+      @out_file.puts(content)
+      @out_file.close
+    rescue Exception => e
+      puts "Error: #{e}" 
+    end 
   end
 
 end
