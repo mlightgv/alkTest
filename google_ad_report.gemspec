@@ -6,12 +6,12 @@ require 'google_ad_report/version'
 Gem::Specification.new do |spec|
   spec.name          = "google_ad_report"
   spec.version       = GoogleAdReport::VERSION
-  spec.authors       = ["TODO: Write your name"]
-  spec.email         = ["TODO: Write your email address"]
+  spec.authors       = ["Mary Gomez"]
+  spec.email         = ["--@gmail.com"]
 
-  spec.summary       = %q{TODO: Write a short summary, because Rubygems requires one.}
-  spec.description   = %q{TODO: Write a longer description or delete this line.}
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
+  spec.summary       = %q{Alkhemy project.}
+  spec.description   = %q{--}
+  spec.homepage      = "--"
 
   # Prevent pushing this gem to RubyGems.org by setting 'allowed_push_host', or
   # delete this section to allow pushing this gem to any host.
