@@ -35,12 +35,12 @@ class Main
   def get_data
     parser = Parser.new(:file_in => @input)
     data = parser.parser_data
-    data = transform_data(data)
+    data = get_summary(data)
   end
 
-  def transform_data(data)
-    transform_data = Summary.new(:data => data)
-    data = transform_data.group_data
+  def get_summary(data)
+    get_summary = Summary.new(:data => data)
+    data = get_summary.group_data
   end
 
   def get_statistics(data)
