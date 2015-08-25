@@ -2,6 +2,7 @@ require_relative 'parse_csv'
 require_relative 'report'
 require_relative 'statistic'
 require_relative 'html_file'
+require_relative 'transform_data'
 
 class Main
 
@@ -33,6 +34,12 @@ class Main
   def get_data
     parse = ParseCSV.new(:file_in => @input)
     data = parse.parse_data
+    data = transform_data(data)
+  end
+
+  def transform_data(data)
+    transform_data = TransformData.new(:data => data)
+    data = transform_data.group_data
   end
 
   def get_statistics(data)
