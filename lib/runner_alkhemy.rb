@@ -9,7 +9,6 @@ class RunnerAlkhemy
       show_error_message 
     else
       validate_arguments(arguments)
-      execute_main
     end
   end
 
@@ -18,11 +17,13 @@ class RunnerAlkhemy
       for i in 0..arguments.count - 1
         if (i == 0)
           validate_input_file(arguments[i])
+          validate_output_extention(File.extname(arguments[i]), ".csv")
         else
-          validate_output_extention(File.extname(arguments[i]))
+          validate_output_extention(File.extname(arguments[i]), ".html")
           validate_output_directory(File.dirname(arguments[i]))
         end
       end
+       execute_main
     rescue Exception => e
       puts "Error: #{e}" 
     end 
@@ -42,9 +43,9 @@ class RunnerAlkhemy
     end
   end
 
-  def validate_output_extention(output)
-    unless output == ".html"
-      puts "ERROR: the extention of the file should be .html."
+  def validate_output_extention(output, extention)
+    unless output == extention
+      puts "ERROR: the extention of the file should be #{extention}."
       exit
     end
   end

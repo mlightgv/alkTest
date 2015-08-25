@@ -8,10 +8,8 @@ describe Statistic do
   before do
     @yaml = YAML.load_file("./fixtures/statistic.yml")
     parser = Parser.new(:file_in => "./fixtures/test_data.csv")
-    data = parser.parser_data
-    transform_data = Summary.new(:data => data)
-    results = transform_data.group_data
-    @statistics = Statistic.new(:results => results)
+    summary = Summary.new(:data => parser.parser_data)
+    @statistics = Statistic.new(:results => summary.group_data)
   end
 
   it "Highest Impressions" do

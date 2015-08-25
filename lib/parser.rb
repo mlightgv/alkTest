@@ -34,5 +34,4 @@ class Parser
                       :cost_div_converted_click, 
                       :converted_clicks_div_clicks, 
                       :final_url ) 
-
 end
