@@ -7,8 +7,9 @@ describe Report do
 
   before do
     @yaml = YAML.load_file("./fixtures/report.yml")
-    parse = ParseCSV.new(:file_in => "spec/ad_performance_aug.csv")
+    parse = ParseCSV.new(:file_in => "./fixtures/test_data.csv")
     statistics = Statistic.new(:results => parse.parse_data)
+    # 1) Build Data Report 
     columns = { @yaml["column_name2"] => "id_campaing", @yaml["column_name3"] => "final_url", @yaml["column_name4"] => "day" }
     metrics = { @yaml["row_metric_name1"] => statistics.highest_impressions,
                 @yaml["row_metric_name2"] => statistics.highest_clicks,
@@ -16,6 +17,7 @@ describe Report do
                 @yaml["row_metric_name4"] => statistics.lowest_cost,
                 @yaml["row_metric_name5"] => statistics.highest_converted_clicks_div_clicks, 
                 @yaml["row_metric_name6"] => statistics.lowest_cost_div_converted_click }
+    # 2) Tabular report
     report = Report.new(:metrics => metrics, :columns => columns)
     @report = report.generate_report
   end

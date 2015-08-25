@@ -8,7 +8,9 @@ describe Html do
 
   before do
     @yaml = YAML.load_file("./fixtures/html_file.yml")
-    reports = {"Google Ad Performance Report" => @yaml["report"]}
+    # 1) Include report in a list of reports
+    reports = {@yaml["title"] => @yaml["report"]}
+    # 2) Convert reports to HTML format and generate output file
     @html = Html.new(:reports => reports, :output => "report.html")
   end
 

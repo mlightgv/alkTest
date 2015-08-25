@@ -5,7 +5,7 @@ require 'parse_csv'
 describe Statistic do
 
   before do
-    parse = ParseCSV.new(:file_in => "spec/ad_performance_aug.csv")
+    parse = ParseCSV.new(:file_in => "./fixtures/test_data.csv")
     data = parse.parse_data
     @statistics = Statistic.new(:results => data)
   end
