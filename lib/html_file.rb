@@ -1,5 +1,4 @@
 require 'markaby'
-require 'fileutils'
 
 class Html
 
@@ -19,7 +18,7 @@ class Html
   def build_html(reports)
     html_format = Markaby::Builder.new
     html_format.html5 do
-      head { title "Report" }
+      head { title "Alkhemy" }
       body do
         reports.each do |title, report|
           br

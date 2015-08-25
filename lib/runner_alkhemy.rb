@@ -55,7 +55,7 @@ class RunnerAlkhemy
 
       Example usage:
       
-      ruby -I lib bin/alkhemy /Users/marygomez/ad_performance_aug.csv /Users/marygomez/output/report.html
+      ruby -I lib bin/alkhemy /Users/marygomez/ad_performance_aug.csv /Users/marygomez/report.html
       eos
     exit 
   end
