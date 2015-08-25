@@ -1,3 +1,5 @@
+title: "Google Ad Performance Report"
+
 report: {"Metrics": ["Campaign ID", "Final URL", "Day"],
 		"Highest Impressions": ["243061000", "http://courses.alkhemyinstitute.edu.au/advanced-diploma-of-transpersonal-art-therapy/", "9/08/2015"], 
 		"Highest Clicks": ["243061000", "http://courses.alkhemyinstitute.edu.au/advanced-diploma-of-transpersonal-art-therapy/", "6/08/2015"], 
