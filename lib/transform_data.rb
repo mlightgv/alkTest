@@ -11,15 +11,15 @@ attr_reader :data
     campaigns = find_by
     campaigns.each do |x|
       rows = filter_data( x[0], x[1], x[2] )
-      data = Stats.new(  x[0], 
-                         x[1], 
-                         x[2], 
-                         sum_values(rows, :impressions), 
-                         sum_values(rows, :clicks),  
-                         sum_values(rows, :converted_clicks),
-                         sum_values(rows, :cost), 
-                         sum_values(rows, :converted_clicks_div_clicks), 
-                         sum_values(rows, :cost_div_converted_click) )
+      data = Stats.new( x[0], 
+                        x[1], 
+                        x[2], 
+                        sum_values(rows, :impressions), 
+                        sum_values(rows, :clicks),  
+                        sum_values(rows, :converted_clicks),
+                        sum_values(rows, :cost), 
+                        sum_values(rows, :converted_clicks_div_clicks), 
+                        sum_values(rows, :cost_div_converted_click) )
       results << data
     end
    results
