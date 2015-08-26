@@ -37,7 +37,13 @@ attr_reader :results
   end
 
   def basic_filter
-    filter.select { |a| Date.strptime(a[:day], "%Y-%m-%d").strftime("%m") == "08" }
+    filter.select do |a| 
+      if a[:day].include? "-" 
+        Date.strptime(a[:day], "%Y-%m-%d").strftime("%m") == "08" 
+      else 
+        Date.strptime(a[:day], "%d/%m/%Y").strftime("%m") == "08"
+      end
+    end
   end
 
   def cost_filter
