@@ -4,8 +4,9 @@ require_relative 'statistic'
 require_relative 'report'
 require_relative 'html_file'
 
-
 class Main
+
+  attr_reader :input, :output
 
   def initialize(args)
     @input = args[0]

@@ -2,35 +2,51 @@ require 'main'
 
 class RunnerAlkhemy
 
+  attr_reader :input, :output
+
   def initialize(arguments)
-    if !ARGV  
+    if !arguments  
       show_error_message 
-    elsif arguments.count < 2
+    elsif arguments.count != 2
       show_error_message 
     else
-      validate_arguments(arguments)
+      @input = arguments[0]
+      @output = arguments[1]
+      validate_arguments
     end
   end
 
-  def validate_arguments(arguments)
+  def validate_arguments
+    if (validate_input && validate_output)
+      execute_main
+    end
+  end
+
+  def validate_input
     begin
-      for i in 0..arguments.count - 1
-        if (i == 0)
-          validate_input_file(arguments[i])
-          validate_output_extention(File.extname(arguments[i]), ".csv")
-        else
-          validate_output_extention(File.extname(arguments[i]), ".html")
-          validate_output_directory(File.dirname(arguments[i]))
-        end
-      end
-       execute_main
+      validate_input_file
+      validate_extention(File.extname(@input), ".csv")
+      true
     rescue Exception => e
       puts "Error: #{e}" 
+      false
     end 
   end
 
-  def validate_input_file(input)
-    unless File.file? input
+  def validate_output
+    begin
+      validate_extention(File.extname(@output), ".html")
+      validate_output_directory(File.dirname(@output))
+      true
+    rescue Exception => e
+      puts "Error: #{e}"
+      false
+    end 
+  end
+
+
+  def validate_input_file
+    unless File.file? @input
       puts "ERROR: the directory does not exist or the input file does not exist or is not a file."
       exit
     end
@@ -43,7 +59,7 @@ class RunnerAlkhemy
     end
   end
 
-  def validate_output_extention(output, extention)
+  def validate_extention(output, extention)
     unless output == extention
       puts "ERROR: the extention of the file should be #{extention}."
       exit
