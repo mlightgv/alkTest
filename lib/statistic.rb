@@ -7,37 +7,45 @@ attr_reader :results
   end
 
   def highest_impressions 
-    filter_data.max_by(&:impressions)
+    basic_filter.max_by(&:impressions)
   end
 
   def highest_clicks  
-    filter_data.max_by(&:clicks)
+    basic_filter.max_by(&:clicks)
   end 
 
   def highest_converted_clicks 
-    filter_data.max_by(&:converted_clicks)
+    basic_filter.max_by(&:converted_clicks)
   end 
 
   def lowest_cost 
-    filter_data.min_by(&:cost)
+    cost_filter.min_by(&:cost)
   end
 
   def highest_converted_clicks_div_clicks 
-    filter_data.max_by(&:converted_clicks_div_clicks)
+    basic_filter.max_by(&:converted_clicks_div_clicks)
   end  
 
   def lowest_cost_div_converted_click 
-    filter_data2.min_by(&:cost_div_converted_click)
+    cost_div_converted_click_filter.min_by(&:cost_div_converted_click)
   end
 
   private
 
-  def filter_data
-    @results.select { |a| a[:id_campaign].strip != "--" && a[:cost] > 0}
+  def filter
+    @results.select { |a| a[:id_campaign].strip != "--" }
   end
 
-  def filter_data2
-    @results.select { |a| a[:id_campaign].strip != "--" && a[:cost_div_converted_click] > 0}
+  def basic_filter
+    filter.select { |a| Date.strptime(a[:day], "%Y-%m-%d").strftime("%m") == "08" }
+  end
+
+  def cost_filter
+    basic_filter.select { |a| a[:cost] > 0 }
+  end
+
+  def cost_div_converted_click_filter
+    basic_filter.select { |a| a[:cost_div_converted_click] > 0 }
   end
 
 end
