@@ -11,8 +11,8 @@ class Parser
   def parser_data
     results = Array.new
     CSV.foreach(@file, headers: true, skip_blanks: true) do |row|
-        stats = Stats.new(  row['Campaign ID'],
-                            row['Day'],
+        stats = Stats.new(  row["Campaign ID"],
+                            row["Day"],
                             row["Impressions"].to_i,
                             row["Clicks"].to_i, 
                             row["Cost"].to_i, 

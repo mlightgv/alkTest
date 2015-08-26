@@ -27,13 +27,17 @@ attr_reader :results
   end  
 
   def lowest_cost_div_converted_click 
-    filter_data.min_by(&:cost_div_converted_click)
+    filter_data2.min_by(&:cost_div_converted_click)
   end
 
   private
 
   def filter_data
-    @results.select { |a| a[:id_campaign].strip != "--" }
+    @results.select { |a| a[:id_campaign].strip != "--" && a[:cost] > 0}
+  end
+
+  def filter_data2
+    @results.select { |a| a[:id_campaign].strip != "--" && a[:cost_div_converted_click] > 0}
   end
 
 end

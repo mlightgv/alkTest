@@ -48,6 +48,8 @@ class Report
     case field
       when "cost"
         v = FormatFields.format_currency(value, "AUD")
+      when "cost_div_converted_click"
+        v = FormatFields.format_currency(value, "AUD")
       when "converted_clicks_div_clicks"
         v = FormatFields.format_percentage(value, 1)
       else
