@@ -39,11 +39,27 @@ attr_reader :results
   def basic_filter
     filter.select do |a| 
       if a[:day].include? "-" 
-        Date.strptime(a[:day], "%Y-%m-%d").strftime("%m") == "08" 
+        convert_date_format_1(a[:day]).strftime("%m") == "08" 
       else 
-        Date.strptime(a[:day], "%d/%m/%Y").strftime("%m") == "08"
+        convert_date_format_2(a[:day]).strftime("%m") == "08"
       end
     end
+  end
+
+  def convert_date_format_1(day)
+    begin
+      Date.strptime(day, "%Y-%m-%d")
+    rescue Exception => e
+      puts "Error: #{e}. Format expected for day %d/%m/%Y or %Y-%m-%d" 
+    end 
+  end
+
+  def convert_date_format_2(day)
+    begin
+      Date.strptime(day, "%d/%m/%Y")
+      rescue Exception => e
+      puts "Error: #{e}. Format expected for day %d/%m/%Y or %Y-%m-%d" 
+    end 
   end
 
   def cost_filter
