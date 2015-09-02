@@ -8,13 +8,12 @@ describe Html do
     # 1) Include report in a list of reports
     reports = {@yaml["title"] => @yaml["report"]}
     # 2) Convert reports to HTML format and generate output file
-    @html = Html.new(:reports => reports, :output => "report.html")
+    @output_file = "report.html"
+    Html.new(:reports => reports, :output => @output_file).build_html_report
   end
 
   it "Convert report to HTML format" do
-    output_expect = @yaml["html"]
-    output_obtained = @html.build_html_report
-    expect(output_obtained).to eql(output_expect)
+    expect(File.file? @output_file).to eql(true)
   end
 
 end

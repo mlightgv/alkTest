@@ -12,7 +12,6 @@ class Html
   def build_html_report
     html_format = build_html(@reports)
     output_html_report(html_format.to_s)
-    html_format.to_s
   end
 
   private
@@ -36,14 +35,11 @@ class Html
         end
       end
     end
-    html_format
   end
 
   def output_html_report(content)
     begin
-      @out_file = File.new(output, "w+")
-      @out_file.puts(content)
-      @out_file.close
+      File.open(output, "w+"){ |file| file.puts content }
     rescue Exception => e
       puts "Error: #{e}" 
     end 

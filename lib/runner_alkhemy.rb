@@ -78,8 +78,7 @@ class RunnerAlkhemy
   end
 
   def execute_main
-    main = Main.new(ARGV)
-    main.generate_report
+    Main.new(ARGV).generate_report
   end
 
 end

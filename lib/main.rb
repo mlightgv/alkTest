@@ -34,28 +34,23 @@ class Main
   private
 
   def get_data
-    parser = Parser.new(:file_in => @input)
-    data = parser.parser_data
-    data = get_summary(data)
+    get_summary(Parser.new(:file_in => @input).parser_data)
   end
 
   def get_summary(data)
-    get_summary = Summary.new(:data => data)
-    data = get_summary.group_data
+    Summary.new(:data => data).group_data
   end
 
   def get_statistics(data)
-    statistics = Statistic.new(:results => data)
+    Statistic.new(:results => data)
   end
 
   def get_report(metrics, columns)
-    report = Report.new(:metrics => metrics, :columns => columns)
-    data_report = report.generate_report
+    Report.new(:metrics => metrics, :columns => columns).generate_report
   end
 
   def get_output(reports)
-    html = Html.new(:reports => reports, :output => @output)
-    output = html.build_html_report
+    Html.new(:reports => reports, :output => @output).build_html_report
   end
 
 end

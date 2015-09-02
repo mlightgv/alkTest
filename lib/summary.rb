@@ -7,9 +7,8 @@ attr_reader :data
   end
 
   def group_data
-    results = Array.new
     campaigns = find_by
-    campaigns.each do |x|
+    campaigns.map do |x|
       rows = filter_data( x[0], x[1], x[2] )
       data = Stats.new( x[0], 
                         x[1], 
@@ -20,9 +19,7 @@ attr_reader :data
                         sum_values(rows, :cost), 
                         sum_values(rows, :converted_clicks_div_clicks), 
                         sum_values(rows, :cost_div_converted_click) )
-      results << data
     end
-   results
   end
 
   private
@@ -32,7 +29,7 @@ attr_reader :data
   end
 
   def filter_data(id_campaing, day, final_url)
-    rows = @data.find_all{ |a| a[:id_campaign] == id_campaing && a[:day] == day && a[:final_url] == final_url }
+    @data.find_all{ |a| a[:id_campaign] == id_campaing && a[:day] == day && a[:final_url] == final_url }
   end
 
   def sum_values(rows, column_name)
